@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "parse.c"
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +37,10 @@ int main(int argc, char *argv[])
         fputs("entire read fails\n", stderr);
         exit(1);
     }
+
+    json_t *test = jsonc_parse(json);
+    printf("%p", &test->child);
+
 
     fclose(fp);
     free(json);

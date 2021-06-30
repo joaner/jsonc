@@ -1,24 +1,18 @@
 #define MAX_NODE_SIZE = 1000;
 #define MAX_NODE_NEST = 1000;
 
-enum JSONC_TYPE {
+typedef enum {
     JSONC_NIL=0,
     JSONC_ARR=1,
     JSONC_OBJ=2,
     JSONC_NUM=3,
     JSONC_STR=4,
-};
-
-// scalar value: int/float/string
-typedef union {
-    char *s;
-    double *f;
-    int *i;
-} json_scalar_t;
+} JSONC_TYPE;
 
 typedef struct {
     char *key;
-    json_scalar_t *value;
+    JSONC_TYPE type;
+    void* p;
     struct json_node_t *node;
     struct json_node_t *next;
 } json_node_t;
